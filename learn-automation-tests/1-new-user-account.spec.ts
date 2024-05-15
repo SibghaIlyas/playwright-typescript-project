@@ -11,7 +11,7 @@ test.describe.serial('Create new user account' , ( ) => {
         let randomName: string = faker.name.firstName();
         let randomEmail: string = faker.internet.email();
         let randomPwd: string = faker.internet.password();
-        const envData = `EMAIL=${randomEmail}\nPASSWORD=${randomPwd}\nUSERNAME=${randomName}`;
+        const envData = `EMAIL=${randomEmail}\nPASSWORD=${randomPwd}\nPW_USERNAME=${randomName}`;
         fs.writeFileSync('.env', envData);
         const awsInterest = await page.getByLabel('AWS');
         const jmeterInterest = await page.getByLabel('JMETER')
