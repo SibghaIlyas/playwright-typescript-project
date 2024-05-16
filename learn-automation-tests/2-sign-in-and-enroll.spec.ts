@@ -16,7 +16,7 @@ test.describe.serial('Login & enroll', () => {
        
         const email = process.env.EMAIL || '' ;
         const password = process.env.PASSWORD || '';
-        const username = process.env.USERNAME || '';
+        const username = process.env.PW_USERNAME || '';
         console.log(email + " " + password );
         const emailLocator = await page.getByPlaceholder('Email')
         const pwdLocator = await page.getByPlaceholder('Password')

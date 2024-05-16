@@ -2,7 +2,7 @@
 2. Create a file named as .env and enter following test data first in the file: 
 EMAIL=Lolita.Ryan@gmail.com
 PASSWORD=8g_VlhyUFlF6Jha
-USERNAME=Rylan
+PW_USERNAME=Rylan
 3. Open the project and then on terminal run the command `npm install`
 4. Run the project by using command   `npx playwright test --headed`
 5. If want to run in a headless mode, use command  `npx playwright test`
