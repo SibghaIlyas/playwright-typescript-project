@@ -1,23 +1,33 @@
 import { test, expect, type Page } from '@playwright/test';
 import dotenv from 'dotenv';
+import { generateRandCredentials, signUp } from '../utils/commonFunctions';
+import * as faker from 'faker';
 dotenv.config();
 
 test.describe.serial('Login & enroll', () => {
     let context;
     let page: Page;
+    let email: string;
+    let password: string;
+    let username: string;
+    
 
     test.beforeAll(async ({ browser }) => {
+        username = faker.name.firstName();
+        email = faker.internet.email();
+        password = faker.internet.password();
+        console.log(email + " " + password );
         context = await browser.newContext();
         page = await context.newPage();
+        await signUp(page, username, email, password, "Uttarakhand", "Female")
+        let successPopup = page.locator("div[role='alert']");
+        await expect(successPopup).toHaveText("Signup successfully, Please login!")
         await page.goto('/login');
     });
 
     test('2. Login with created credentials', async () => {
        
-        const email = process.env.EMAIL || '' ;
-        const password = process.env.PASSWORD || '';
-        const username = process.env.PW_USERNAME || '';
-        console.log(email + " " + password );
+        
         const emailLocator = await page.getByPlaceholder('Email')
         const pwdLocator = await page.getByPlaceholder('Password')
         const submiteLocator = await page.getByRole( 'button', {name: 'Sign in'})
